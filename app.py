@@ -49,10 +49,7 @@ from attendance_agent.fusion.synchronizer import MultimodalSynchronizer
 from attendance_agent.models import AttendanceStatus, SessionStatus
 from attendance_agent.storage.database import DatabaseManager, init_db
 from attendance_agent.utils.logger import get_logger, setup_logger
-from attendance_agent.vision.attendance import (
-    PresenceAttendanceEngine,
-    export_attendance_csv,
-)
+from attendance_agent.vision.attendance import PresenceAttendanceEngine
 from attendance_agent.vision.capture import VideoSource, annotate_frame
 from attendance_agent.vision.detector import (
     FaceBoundingBox,
@@ -570,7 +567,7 @@ def render_attendance_section() -> None:
     st.markdown("### 📋 Presence-Based Attendance System")
     st.caption("Evaluates sustained classroom presence over time. Eliminates single-frame false positives.")
 
-    sid = session_selector(label="Choose Session to Review Attendance:")
+    sid = session_selector(label="Choose Session to Review Attendance:", key="sel_sess_attendance")
     if not sid:
         return
 
@@ -666,7 +663,7 @@ def render_engagement_analytics() -> None:
     st.markdown("### 📈 Multimodal Engagement & Activity Analytics")
     st.caption("Explainable proxy scores combining visual presence coverage, acoustic activity, and physical movement.")
 
-    sid = session_selector(label="Choose Session to Inspect Engagement:")
+    sid = session_selector(label="Choose Session to Inspect Engagement:", key="sel_sess_analytics")
     if not sid:
         return
 
@@ -803,7 +800,7 @@ def render_teaching_suggestions() -> None:
     st.markdown("### 💡 Teaching Suggestions & Pedagogical Agent")
     st.caption("Context-aware, rule-based instructional decision support based on observed multimodal trends.")
 
-    sid = session_selector(label="Choose Session to Review Suggestions:")
+    sid = session_selector(label="Choose Session to Review Suggestions:", key="sel_sess_suggestions")
     if not sid:
         return
 
@@ -896,7 +893,7 @@ def render_session_reports() -> None:
     st.markdown("### 📑 Session Analytical Reports & Exports")
     st.caption("Consolidated pedagogical reports combining attendance, acoustic profiles, activity trends, and suggestions.")
 
-    sid = session_selector(label="Choose Session to Generate Report:")
+    sid = session_selector(label="Choose Session to Generate Report:", key="sel_sess_reports")
     if not sid:
         return
 
