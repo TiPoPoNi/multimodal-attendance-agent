@@ -112,10 +112,18 @@ class FaceDetectorWrapper:
         self.min_confidence = min_detection_confidence
 
         if not self.model_path.exists():
-            raise FileNotFoundError(
-                f"MediaPipe face detector model file not found at '{self.model_path}'. "
-                "Download the offline model file into data/models/ before starting."
-            )
+            try:
+                import urllib.request
+                self.model_path.parent.mkdir(parents=True, exist_ok=True)
+                url = "https://storage.googleapis.com/mediapipe-models/face_detector/blaze_face_short_range/float16/1/blaze_face_short_range.task"
+                logger.info("Local model not found at '%s'. Downloading MediaPipe weights...", self.model_path)
+                urllib.request.urlretrieve(url, str(self.model_path))
+            except Exception as e:
+                logger.warning("Auto-download of face detector model failed: %s", e)
+                raise FileNotFoundError(
+                    f"MediaPipe face detector model file not found at '{self.model_path}'. "
+                    "Download the offline model file into data/models/ before starting."
+                ) from e
 
         logger.info(
             "Initializing MediaPipe FaceDetector using model '%s' (min_confidence=%.2f)",

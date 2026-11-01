@@ -27,8 +27,8 @@ data/sessions/*.csv
 !data/sessions/.gitkeep
 
 # Model weights and raw data
-data/models/*.task
 data/models/*.tflite
+!data/models/blaze_face_short_range.task
 !data/models/.gitkeep
 
 # Sample and temporary media files

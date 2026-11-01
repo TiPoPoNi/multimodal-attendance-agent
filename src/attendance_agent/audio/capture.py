@@ -15,7 +15,12 @@ from typing import Any, Dict, List, Optional, Tuple, Union
 
 import librosa
 import numpy as np
-import sounddevice as sd
+try:
+    import sounddevice as sd
+    HAS_SOUNDDEVICE = True
+except Exception:
+    sd = None
+    HAS_SOUNDDEVICE = False
 import soundfile as sf
 
 from attendance_agent.utils.logger import get_logger
@@ -167,6 +172,8 @@ class MicrophoneCapture:
     @staticmethod
     def is_available() -> bool:
         """Check if at least one audio input device is available."""
+        if not HAS_SOUNDDEVICE or sd is None:
+            return False
         try:
             devices = sd.query_devices()
             return any(d.get("max_input_channels", 0) > 0 for d in devices)
@@ -180,6 +187,8 @@ class MicrophoneCapture:
         Returns:
             List[Dict[str, Any]]: List of device descriptor dictionaries.
         """
+        if not HAS_SOUNDDEVICE or sd is None:
+            return []
         try:
             devices = sd.query_devices()
             results = []
@@ -218,6 +227,9 @@ class MicrophoneCapture:
         Raises:
             RuntimeError: If recording fails or microphone access is denied.
         """
+        if not HAS_SOUNDDEVICE or sd is None:
+            raise RuntimeError("Live microphone recording is unavailable: sounddevice / PortAudio is not installed.")
+
         num_samples = int(duration_seconds * sample_rate)
         logger.debug("Recording %s seconds from mic (device=%s)", duration_seconds, device_index)
 
