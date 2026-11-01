@@ -1,0 +1,15 @@
+# Multimodal Attendance & Engagement Agent
+# Python 3.11 Dependencies
+
+streamlit>=1.35.0
+opencv-python>=4.9.0
+mediapipe>=0.10.14
+librosa>=0.10.2
+soundfile>=0.12.1
+sounddevice>=0.4.6
+numpy>=1.26.0
+pandas>=2.2.0
+plotly>=5.22.0
+pytest>=8.2.0
+python-dotenv>=1.0.1
+

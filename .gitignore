@@ -1,0 +1,49 @@
+# Python virtual environment
+.venv/
+venv/
+env/
+ENV/
+
+# Python byte-code and cache
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.pytest_cache/
+.coverage
+htmlcov/
+.mypy_cache/
+
+# Local Environment Variables
+.env
+.env.local
+
+# Database and Session Data
+data/sessions/*.db
+data/sessions/*.sqlite
+data/sessions/*.sqlite3
+data/sessions/*.log
+data/sessions/*.csv
+!data/sessions/.gitkeep
+
+# Model weights and raw data
+data/models/*.task
+data/models/*.tflite
+!data/models/.gitkeep
+
+# Sample and temporary media files
+data/samples/*.mp4
+data/samples/*.avi
+data/samples/*.wav
+data/samples/*.mp3
+!data/samples/.gitkeep
+
+# IDE and OS artifacts
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+
+# Streamlit
+.streamlit/secrets.toml
+
