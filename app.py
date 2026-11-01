@@ -111,17 +111,13 @@ def render_header() -> None:
 def render_sidebar() -> None:
     """Render sidebar system info and quick links."""
     with st.sidebar:
-        st.subheader("🎓 System Roadmap")
+        st.subheader("🎓 Active Capabilities")
         st.markdown(
             """
-            - ✅ **Phase 1:** Project Foundation & Setup
-            - ✅ **Phase 2:** Anonymous Face Tracking
-            - ✅ **Phase 3:** Presence-Based Attendance
-            - ✅ **Phase 4:** Classroom Sound Analysis
-            - ✅ **Phase 5:** Multimodal Signal Fusion
-            - ✅ **Phase 6:** Rule-Based Teaching Agent
-            - ✅ **Phase 7:** Integrated Dashboard
-            - ✅ **Phase 8:** Testing & Optimization
+            - 🎯 **Anonymous Vision:** Spatial face tracking & presence
+            - 🎙️ **Acoustic Analytics:** Ambient sound & noise trends
+            - ⚡ **Multimodal Fusion:** Explainable 0–100 activity proxy
+            - 💡 **Pedagogical Agent:** Decision-support teaching rules
             """
         )
 
