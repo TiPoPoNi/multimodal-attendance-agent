@@ -83,3 +83,4 @@ def test_export_timeline_csv(test_db: DatabaseManager, tmp_path: Path) -> None:
     assert "window_start" in headers
     assert "activity_score" in headers
     assert len(rows) == 20
+
